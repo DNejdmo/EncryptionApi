@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System.Diagnostics.Eventing.Reader;
 
-//Testar att skapa dev-branch. Mer test. Ändring
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,11 +29,40 @@ string EncryptToRovarspraket(string input)
 }
 
 
+//Metod för att avkryptera rövarspråket
+string DecryptFromRovarspraket(string input)
+{
+    string result = "";
+    int i = 0;
+
+    while (i < input.Length)
+    {
+        result += input[i]; // Lägg alltid till den första bokstaven
+
+        // Om det är en konsonant, hoppa över "o" och den duplicerade konsonanten
+        if (char.IsLetter(input[i]) && (i + 2 < input.Length) && input[i + 1] == 'o' && char.ToLower(input[i]) == char.ToLower(input[i + 2]))
+        {
+            i += 3; // Hoppa över "o" + duplicerad bokstav
+        }
+        else
+        {
+            i++; // Gå vidare till nästa tecken
+        }
+    }
+    return result;
+}
+
 
 //Endpoint för kryptering
 app.MapGet("/encrypt", (string input) =>
 {
     return EncryptToRovarspraket(input);
+});
+
+//Éndpoint för dekryptering
+app.MapGet("/decrypt", (string input) =>
+{
+    return DecryptFromRovarspraket(input);
 });
 
 app.Run();
