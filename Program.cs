@@ -7,19 +7,19 @@ using System.Diagnostics.Eventing.Reader;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Välkommen till API:et för rövarspråket!");
+app.MapGet("/", () => "VÃ¤lkommen till API:et fÃ¶r rÃ¶varsprÃ¥ket!");
 
-//Metod för kryptering till rövarspråket
+//Metod fÃ¶r kryptering till rÃ¶varsprÃ¥ket
 string EncryptToRovarspraket(string input)
 {
-    string vowels = "aeiouyåäöAEIOUYÅÄÖ";
+    string vowels = "aeiouyÃ¥Ã¤Ã¶AEIOUYÃ…Ã„Ã–";
     string result = "";
 
     foreach (char c in input)
     {
         if (!vowels.Contains(c) && char.IsLetter(c))
         {
-            result += $"{c}o{c.ToString().ToLower()}"; //Om bokstaven är en konsonant lägg till "o" och bokstaven en gång till
+            result += $"{c}o{c.ToString().ToLower()}"; //Om bokstaven Ã¤r en konsonant lÃ¤gg till "o" och bokstaven en gÃ¥ng till
         }
         else
         {
@@ -31,7 +31,7 @@ string EncryptToRovarspraket(string input)
 
 
 
-//Endpoint för kryptering
+//Endpoint fÃ¶r kryptering
 app.MapGet("/encrypt", (string input) =>
 {
     return EncryptToRovarspraket(input);
