@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Components.Forms;
 using System.Diagnostics.Eventing.Reader;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
