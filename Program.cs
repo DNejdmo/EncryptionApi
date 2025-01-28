@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System.Diagnostics.Eventing.Reader;
 
-
-//Testar att skapa dev-branch
-
+//Testar att skapa dev-branch. Mer test. 
 
 
 var builder = WebApplication.CreateBuilder(args);
