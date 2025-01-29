@@ -1,0 +1,27 @@
+﻿name: GH-actions runs on PR to dev
+on:
+ pull_request:
+  branches:
+   - dev
+   
+jobs:
+ build:
+  runs-on: ubuntu-latest
+
+  steps:
+   - name: Checkout code
+     uses: actions/checkout@v3
+
+   - name: Set up .NET SDK
+     uses: actions/setup-dotnet@v3
+     with:
+      dotnet-version: "8.0"
+
+   - name: Restore dependencies
+     run: dotnet restore
+
+   - name: Build project
+     uses: dotnet build --no-restore
+
+   - name: Run tests in EncryptionApi.Tests
+     run: dotnet test ./EncryptionApi.Tests/EncryptionApi.Tests.csproj --no-build --verbosity normal
