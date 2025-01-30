@@ -24,4 +24,4 @@ jobs:
      run: dotnet build --no-restore
 
    - name: Run tests in EncryptionApi.Tests
-     run: dotnet test ../EncryptionApi.Tests/EncryptionApi.Tests.csproj --no-build --verbosity normal
+     run: dotnet test 
